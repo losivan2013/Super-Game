@@ -3,16 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+{ public float speed = 4;
+  public float JumpForce = 1f;
+    Rigidbody2D rb;
+
+    private void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+
+
     void Update()
     {
+
+        float h = Input.GetAxis("Horizontal")*speed;
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("Мы нажали Jump");
+            rb.AddForce(new Vector2(0, JumpForce));
+        }
+
+        
+        transform.Translate(h, 0, 0);  
         
     }
 }
